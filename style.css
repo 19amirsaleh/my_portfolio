@@ -95,7 +95,7 @@ img {
 
 .hero-section {
   padding-top: 100px; /* supaya konten tidak ketutup navbar fixed */
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,14 +116,16 @@ img {
 }
 
 .hero-content h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 24px; /* Untuk "Halo, Saya" */
+  font-weight: 400; /* Lebih ringan */
+  margin-bottom: 5px;
 }
 
 .hero-content h1 {
-  font-size: 54px;
-  margin: 0;
+  font-size: 58px; /* Lebih besar dan dramatis */
+  font-weight: 700; /* Lebih tebal */
+  margin: 0 0 10px 0;
+  line-height: 1.1;
 }
 
 .hero-content h3 {
@@ -178,14 +180,18 @@ img {
   object-fit: cover;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   border: 2px solid #ffffff;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Tambahkan transisi */
 }
-
+.profile-pic:hover {
+  transform: scale(1.03); /* Sedikit membesar saat di-hover */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* Shadow sedikit lebih dalam */
+}
 /* ================= ABOUT SECTION ================= */
 
 .about-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: #ffffff;
-  text-align: justify;
+  text-align: left;
 }
 
 .about-section h2 {
@@ -226,7 +232,7 @@ img {
 /* ================= SKILLS SECTION ================= */
 
 .skills-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: #e6f0ff;
   text-align: center;
 }
@@ -271,7 +277,7 @@ img {
 /* ================= WORKS SECTION ================= */
 
 .works-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: #ffffff;
   text-align: center;
 }
@@ -316,7 +322,7 @@ img {
 /* ================= CONTACT SECTION ================= */
 
 .contact-section {
-  padding: 100px 0;
+  padding: 50px 0;
   background-color: #e6f0ff;
   text-align: center;
 }
@@ -331,21 +337,37 @@ img {
   margin-bottom: 30px;
 }
 
+/* ================= CONTACT LINKS DAN IKON ================= */
+
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 20px; /* Jarak antar ikon */
   flex-wrap: wrap;
 }
 
 .link-btn {
   text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-weight: 600;
+
+  /* Properti Ikon Bulat yang Optimal */
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%; /* Membuat tombol menjadi bulat */
+
+  /* Styling Ikon */
+  font-size: 20px;
+
+  /* Flexbox untuk menengahkan ikon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: normal; /* Pastikan tidak ada bold */
   transition: background 0.3s;
 }
 
+/* Biarkan styling warna tetap sama (sudah benar) */
 .linkedin {
   background: #0077b5;
   color: white;
@@ -406,34 +428,56 @@ footer {
 /* ================= RESPONSIVE (MOBILE) ================= */
 
 @media (max-width: 768px) {
-  /* Navbar */
-  .navbar .container {
-    justify-content: space-between;
-  }
+  /* ... kode responsif lainnya ... */
 
   .nav-links {
-    position: absolute;
-    top: 60px;
+    position: fixed;
+    /* Posisi Vertikal: Mulai TEPAT di bawah navbar (Anggap 60px) */
+    top: 68px;
     right: 0;
-    left: 0;
-    background: #0752db;
+
+    /* TINGGI: HANYA SETINGGI KONTEN (Auto) */
+    height: auto;
+    max-height: 80vh; /* Batasi maksimal tinggi, jaga-jaga jika terlalu banyak link */
+
+    /* LEBAR: Sedikit lebar agar muat dan tidak terlalu memanjang */
+    width: 150px;
+    max-width: 75%;
+
+    /* Gaya visual tetap sama */
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2); /* Tambahkan shadow di bawah */
+
+    /* Efek Sliding: Sembunyikan ke kanan */
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+
+    /* Penempatan Teks */
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 0;
-    margin: 0;
-    display: none; /* awalnya disembunyikan */
+    align-items: flex-start;
+    padding: 10px 20px; /* Padding di dalam menu dikurangi */
+
+    display: flex;
+    z-index: 999;
   }
 
+  .nav-links.show {
+    /* Saat class 'show' aktif, geser menu masuk */
+    transform: translateX(0);
+  }
+
+  /* Atur jarak item link */
   .nav-links li {
-    margin: 0;
+    margin: 5px 0; /* Jarak antar item dikurangi */
+    width: 100%;
+    text-align: left;
   }
 
   .nav-links a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
+    color: var(--color-text-dark);
+    font-size: 1.1rem; /* Ukuran font sedikit dikecilkan */
+    font-weight: 700;
+    padding: 10px 0;
   }
 
   .menu-toggle {
